@@ -65,20 +65,6 @@ class FileStorage:
                                                                         file:
                     attr_dict = json.load(file)
                     for key, value in attr_dict.items():
-                        match key[:-37]:
-                            case "BaseModel":
-                                FileStorage.__objects[key] = BaseModel(**value)
-                            case "User":
-                                FileStorage.__objects[key] = User(**value)
-                            case "State":
-                                FileStorage.__objects[key] = State(**value)
-                            case "City":
-                                FileStorage.__objects[key] = City(**value)
-                            case "Amenity":
-                                FileStorage.__objects[key] = Amenity(**value)
-                            case "Place":
-                                FileStorage.__objects[key] = Place(**value)
-                            case "Review":
-                                FileStorage.__objects[key] = Review(**value)
+                        FileStorage.__objects[key] = BaseModel(**value)
         except FileNotFoundError:
             pass
