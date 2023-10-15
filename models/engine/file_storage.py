@@ -42,7 +42,8 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
+        """sets in __objects the obj with key <obj class name>.id
+        """
         class_name = obj.__class__.__name__
         key = class_name + "." + obj.id
         FileStorage.__objects[key] = obj
@@ -63,8 +64,12 @@ class FileStorage:
             if exists(FileStorage.__file_path):
                 with open(FileStorage.__file_path, "r", encoding='utf-8') as\
                                                                         file:
+                    objects = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                               'City': City, 'Amenity': Amenity,
+                               'Place': Place, 'Review': Review}
                     attr_dict = json.load(file)
-                    for key, value in attr_dict.items():
-                        FileStorage.__objects[key] = BaseModel(**value)
+                    for obj_id, value in attr_dict.items():
+                        obj = obj_id.split('.')[0]
+                        FileStorage.__objects[obj_id] = objects[obj](**value)
         except FileNotFoundError:
             pass
