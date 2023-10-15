@@ -10,6 +10,12 @@ python3 -m unittest tests/test_models/test_file_storage.py
 import json
 from os.path import exists
 from ..base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -50,12 +56,13 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
+
         try:
             if exists(FileStorage.__file_path):
                 with open(FileStorage.__file_path, "r", encoding='utf-8') as\
                                                                         file:
                     attr_dict = json.load(file)
                     for key, value in attr_dict.items():
-                        FileStorage.__objects[key] = BaseModel(**value)
+                        FileStorage.__objects[key] = User(**value)
         except FileNotFoundError:
             pass

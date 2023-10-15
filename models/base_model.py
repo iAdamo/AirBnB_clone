@@ -61,7 +61,7 @@ class BaseModel:
         Return:
             str: string representation of BaseModel atttributes
         """
-        return f"[{__class__.__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
         """
@@ -79,7 +79,8 @@ class BaseModel:
         Return:
             dict: dictionary containing the attributes of BaseModel
         """
-        self.__dict__["__class__"] = __class__.__name__
-        self.created_at = self.created_at.isoformat()
-        self.updated_at = self.updated_at.isoformat()
-        return self.__dict__
+        dicts = self.__dict__.copy()
+        dicts["__class__"] = self.__class__.__name__
+        dicts["created_at"] = self.created_at.isoformat()
+        dicts["updated_at"] = self.updated_at.isoformat()
+        return dicts
