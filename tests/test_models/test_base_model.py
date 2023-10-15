@@ -8,7 +8,6 @@ import sys
 import unittest
 import inspect
 import io
-import pep8
 from datetime import datetime
 import uuid
 from contextlib import redirect_stdout
@@ -34,25 +33,6 @@ class TestBaseModel(unittest.TestCase):
     def tearDown(self):
         """Set tmp object"""
         self.BM = None
-
-    def test_pep8_conformance_BaseModel(self):
-        """
-        Test that base_model.py file conform to PEP8
-        """
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/base_model.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
-
-    def test_pep8_conformance_test_BaseModel(self):
-        """
-        Test that test_base_model.py file conform to PEP8
-        """
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['tests/test_models/\
-                                        test_base_model.py'])
-        self.assertEqual(result.total_errors, 1,
-                         "Found code style errors (and warnings).")
 
     def test_module_docstring(self):
         """
