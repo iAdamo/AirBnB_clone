@@ -2,6 +2,7 @@
 """base_model module: contains a class `BaseModel` that defines all common
 attributes/methods for other classes
 
+
 You can also test file by file by using this command:
 python3 -m unittest tests/test_models/test_base_model.py
 """
