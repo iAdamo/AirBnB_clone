@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+the console program: this program creates simple command line interpreters
+used in handling/operating the AirBnB site.
+
+
+major commands to be used are the: create, update and destroy. which will
+handle the data creation, update and destroyig of data not needed.
+"""
 
 import cmd
 from models.base_model import BaseModel
@@ -65,15 +73,15 @@ class HBNBCommand(cmd.Cmd):
         Return:
             The string representation of the object id
         """
-        args_list = args.split()
+        token = args.split()
         if args == "":
             print("** class name missing **")
-        elif args_list[0] in HBNBCommand.objects:
-            if len(args_list) < 2:
+        elif token[0] in HBNBCommand.objects:
+            if len(token) < 2:
                 print("** instance id missing **")
                 return False
             all_objs = storage.all()
-            obj_id = f"{args_list[0]}.{args_list[1]}"
+            obj_id = f"{token[0]}.{token[1]}"
             if obj_id not in all_objs.keys():
                 print("** no instance found **")
             else:
@@ -88,15 +96,15 @@ class HBNBCommand(cmd.Cmd):
         Return:
             Nothing
         """
-        args_list = args.split()
+        token = args.split()
         if args == "":
             print("** class name missing **")
-        elif args_list[0] in HBNBCommand.objects:
-            if len(args_list) < 2:
+        elif token[0] in HBNBCommand.objects:
+            if len(token) < 2:
                 print("** instance id missing **")
                 return False
             all_objs = storage.all()
-            obj_id = f"{args_list[0]}.{args_list[1]}"
+            obj_id = f"{token[0]}.{token[1]}"
             if obj_id not in all_objs.keys():
                 print("** no instance found **")
             else:
@@ -112,19 +120,12 @@ class HBNBCommand(cmd.Cmd):
         Return:
             (list) The printed result must be a list of strings
         """
-        args_list = args.split()
-        if args == "":
+        token = args.split()
+        if args == "" or token[0] in HBNBCommand.objects:
             str_rep = []
             all_objs = storage.all()
             for obj_id in all_objs.keys():
                 str_rep.append(str(all_objs[obj_id]))
-            print(str_rep)
-        elif args_list[0] in HBNBCommand.objects:
-            str_rep = []
-            all_objs = storage.all()
-            for obj_id, value in all_objs.items():
-                if obj_id[:-37] == args_list[0]:
-                    str_rep.append(str(all_objs[obj_id]))
             print(str_rep)
         else:
             print("** class doesn't exist **")
@@ -134,32 +135,51 @@ class HBNBCommand(cmd.Cmd):
         updating attribute (save the change into the JSON file).
         Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com"
         """
-        args_list = args.split()
+        token = args.split()
         if args == "":
             print("** class name missing **")
-        elif args_list[0] in HBNBCommand.objects:
-            if len(args_list) < 2:
+        elif token[0] in HBNBCommand.objects:
+            if len(token) < 2:
                 print("** instance id missing **")
                 return False
             all_objs = storage.all()
-            obj_id = f"{args_list[0]}.{args_list[1]}"
+            obj_id = f"{token[0]}.{token[1]}"
             if obj_id not in all_objs.keys():
                 print("** no instance found **")
             else:
-                if len(args_list) < 3:
+                if len(token) < 3:
                     print("** attribute name missing **")
                     return False
-                elif len(args_list) < 4:
+                elif len(token) < 4:
                     print("** value missing **")
                     return False
-                if args_list[3].startswith('"') and args_list[3].endswith('"'):
-                    args_list[3] = args_list[3][1:-1]
-                key = f"{args_list[0]}.{args_list[1]}"
-                setattr(all_objs[key], args_list[2], args_list[3])
+                if token[3].startswith('"') and token[3].endswith('"'):
+                    token[3] = token[3][1:-1]
+                key = f"{token[0]}.{token[1]}"
+                setattr(all_objs[key], token[2], token[3])
                 storage.save()
         else:
             print("** class doesn't exist **")
 
+    def default(self, args):
+        """Method called on an input line when the command prefix is not
+        recognized
+        """
+        token = args.split('.')
+        if token[0] in HBNBCommand.objects:
+            if len(token) != 2 or token[1] != "all()":
+                return
+            else:
+                str_rep = []
+                all_objs = storage.all()
+                for obj_id, value in all_objs.items():
+                    if obj_id[:-37] == token[0]:
+                        print(token[0])
+                        str_rep.append(str(all_objs[obj_id]))
+                print(str_rep)
+        else:
+            print("** class doesn't exist **")
 
-if __name__ == '__main__':
+
+if _name_ == '_main_':
     HBNBCommand().cmdloop()
