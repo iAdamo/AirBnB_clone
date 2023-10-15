@@ -41,13 +41,9 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-    def postloop(self):
-        """Hook method executed once when cmdloop() is about to return
-        """
-        print()
-
     def emptyline(self):
-        """called when an empty line is entered in response to the prompt"""
+        """called when an empty line is entered in response to the prompt
+        """
         pass
 
     def do_create(self, args):
