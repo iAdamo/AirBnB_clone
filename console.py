@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 the console program: this program creates simple command line interpreters
 used in handling/operating the AirBnB site.
@@ -181,5 +181,5 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
