@@ -8,7 +8,7 @@ python3 -m unittest tests/test_models/test_base_model.py
 """
 
 from datetime import datetime
-from uuid import uuid4
+import uuid
 import models
 
 
@@ -40,16 +40,31 @@ class BaseModel:
             updated_at: (datetime) - assign with the current datetime when an
             instance is created and it will be updated every time you change
             your object
-        """
+        
         if kwargs:
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
                 if key == "created_at" or key == "updated_at":
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                self.__dict__[key] = value
+                setattr(self, key, value)
         else:
             self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)"""
+        if kwargs is not None and kwargs != {}:
+            for key in kwargs:
+                if key == "created_at":
+                    self.__dict__["created_at"] = datetime.strptime(
+                        kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == "updated_at":
+                    self.__dict__["updated_at"] = datetime.strptime(
+                        kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                else:
+                    self.__dict__[key] = kwargs[key]
+        else:
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
             models.storage.new(self)
