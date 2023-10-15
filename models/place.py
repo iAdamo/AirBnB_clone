@@ -2,7 +2,7 @@
 """
 creates a sub class for Basemodel named, Place
 """
-from .base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class Place(BaseModel):

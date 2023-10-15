@@ -2,7 +2,7 @@
 <h3>AirBnB clone - The console</h3>
 <h3>A command interpreter to manipulate data without a visual interface</h3>
 <h5>Python OOP</h4>
-  <img src="./hbnb.png" width="1000" height="350"/>
+  <img src="image/hbnb.png" width="1000" height="350"/>
 </div>
 
 ### **Welcome to the AirBnB clone project!**
@@ -65,6 +65,6 @@ EOF  help  quit
 (hbnb) 
 $
 ```
-<img src="./flowdia.png" width="1000" height="350"/>
+<img src="image/flowdia.png" width="1000" height="350"/>
 
 ##### Authors: **`Adam Sanusi Babatunde`** & **`Linda Nwachukwu`**
