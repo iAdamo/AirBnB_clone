@@ -26,18 +26,19 @@ class HBNBCommand(cmd.Cmd):
     intro = "A command interpreter to manipulate AirBnB data"
     prompt = '(hbnb) '
 
-    objects = [
-            'BaseModel', 'User', 'State', 'City',
-            'Amenity', 'Place', 'Review'
-            ]
+    objects = {'BaseModel': BaseModel, 'User': User,
+               'State': State, 'City': City,
+               'Amenity': Amenity, 'Place': Place,
+               'Review': Review
+               }
 
     def do_quit(self, args):
-        """Quit command to exit the program
+        """quit command to exit the program
         """
         return True
 
     def do_EOF(self, args):
-        """Quit command to exit the program
+        """EOF command to exit the program
         """
         return True
 
@@ -45,6 +46,11 @@ class HBNBCommand(cmd.Cmd):
         """called when an empty line is entered in response to the prompt
         """
         pass
+
+    def postloop(self):
+        """method executed once when cmdloop() is about to return
+        """
+        print()
 
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it (to the JSON file)
@@ -55,8 +61,8 @@ class HBNBCommand(cmd.Cmd):
         """
         if args == '':
             print("** class name missing **")
-        elif args in HBNBCommand.objects:
-            my_model = eval(args + '()')
+        elif args in HBNBCommand.objects.keys():
+            my_model = HBNBCommand.objects[args]()
             my_model.save()
             print(my_model.id)
         else:
@@ -72,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
         token = args.split()
         if args == "":
             print("** class name missing **")
-        elif token[0] in HBNBCommand.objects:
+        elif token[0] in HBNBCommand.objects.keys():
             if len(token) < 2:
                 print("** instance id missing **")
                 return False
@@ -95,7 +101,7 @@ class HBNBCommand(cmd.Cmd):
         token = args.split()
         if args == "":
             print("** class name missing **")
-        elif token[0] in HBNBCommand.objects:
+        elif token[0] in HBNBCommand.objects.keys():
             if len(token) < 2:
                 print("** instance id missing **")
                 return False
@@ -117,11 +123,9 @@ class HBNBCommand(cmd.Cmd):
             (list) The printed result must be a list of strings
         """
         token = args.split()
-        if args == "" or token[0] in HBNBCommand.objects:
-            str_rep = []
+        if args == "" or token[0] in HBNBCommand.objects.keys():
             all_objs = storage.all()
-            for obj_id in all_objs.keys():
-                str_rep.append(str(all_objs[obj_id]))
+            str_rep = [(str(all_objs[obj_id])) for obj_id in all_objs.keys()]
             print(str_rep)
         else:
             print("** class doesn't exist **")
@@ -134,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
         token = args.split()
         if args == "":
             print("** class name missing **")
-        elif token[0] in HBNBCommand.objects:
+        elif token[0] in HBNBCommand.objects.keys():
             if len(token) < 2:
                 print("** instance id missing **")
                 return False
@@ -162,15 +166,15 @@ class HBNBCommand(cmd.Cmd):
         recognized
         """
         token = args.split('.')
-        if token[0] in HBNBCommand.objects:
+        if token[0] in HBNBCommand.objects.keys():
             if len(token) != 2 or token[1] != "all()":
                 return
             else:
                 str_rep = []
                 all_objs = storage.all()
-                for obj_id, value in all_objs.items():
-                    if obj_id[:-37] == token[0]:
-                        print(token[0])
+                for obj_id in all_objs.keys():
+                    obj = obj_id.split('.')[0]
+                    if obj == token[0]:
                         str_rep.append(str(all_objs[obj_id]))
                 print(str_rep)
         else:

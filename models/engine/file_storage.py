@@ -60,16 +60,15 @@ class FileStorage:
     def reload(self):
         """deserializes the JSON file to __objects
         """
-        try:
-            if exists(FileStorage.__file_path):
-                with open(FileStorage.__file_path, "r", encoding='utf-8') as\
-                                                                        file:
-                    objects = {'BaseModel': BaseModel, 'User': User, 'State': State,
-                               'City': City, 'Amenity': Amenity,
-                               'Place': Place, 'Review': Review}
-                    attr_dict = json.load(file)
-                    for obj_id, value in attr_dict.items():
-                        obj = obj_id.split('.')[0]
-                        FileStorage.__objects[obj_id] = objects[obj](**value)
-        except FileNotFoundError:
-            pass
+        if exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r", encoding='utf-8') as\
+                                                                    file:
+                objects = {'BaseModel': BaseModel, 'User': User,
+                           'State': State, 'City': City,
+                           'Amenity': Amenity, 'Place': Place,
+                           'Review': Review
+                           }
+                attr_dict = json.load(file)
+                for obj_id, value in attr_dict.items():
+                    obj = obj_id.split('.')[0]
+                    FileStorage.__objects[obj_id] = objects[obj](**value)
