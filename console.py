@@ -166,10 +166,11 @@ class HBNBCommand(cmd.Cmd):
         recognized
         """
         token = args.split('.')
+        cmds = ['all()', 'count()']
         if token[0] in HBNBCommand.objects.keys():
-            if len(token) != 2 or token[1] != "all()":
+            if len(token) != 2 or token[1] not in cmds:
                 return
-            else:
+            elif token[1] == cmds[0]:
                 str_rep = []
                 all_objs = storage.all()
                 for obj_id in all_objs.keys():
@@ -177,6 +178,14 @@ class HBNBCommand(cmd.Cmd):
                     if obj == token[0]:
                         str_rep.append(str(all_objs[obj_id]))
                 print(str_rep)
+            elif token[1] == cmds[1]:
+                count = 0
+                all_objs = storage.all()
+                for obj_id in all_objs.keys():
+                    obj = obj_id.split('.')[0]
+                    if obj == token[0]:
+                        count = count + 1
+                print(count)
         else:
             print("** class doesn't exist **")
 
