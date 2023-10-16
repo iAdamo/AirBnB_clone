@@ -6,6 +6,9 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
+    """the place model"""
+
+    """the attributes to define the inherited class model, place"""
     city_id = ""
     user_id = ""
     name = ""
