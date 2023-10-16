@@ -44,8 +44,7 @@ class FileStorage:
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id
         """
-        class_name = obj.__class__.__name__
-        key = class_name + "." + obj.id
+        key = f"{ obj.__class__.__name__}.{obj.id}"
         FileStorage.__objects[key] = obj
 
     def save(self):
@@ -61,8 +60,7 @@ class FileStorage:
         """deserializes the JSON file to __objects
         """
         if exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, "r", encoding='utf-8') as\
-                                                                    file:
+            with open(FileStorage.__file_path, "r", encoding='utf-8') as file:                                                                    
                 objects = {'BaseModel': BaseModel, 'User': User,
                            'State': State, 'City': City,
                            'Amenity': Amenity, 'Place': Place,

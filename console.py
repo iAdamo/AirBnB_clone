@@ -9,6 +9,7 @@ handle the data creation, update and destroyig of data not needed.
 """
 
 import cmd
+import re
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -21,9 +22,8 @@ from models.review import Review
 
 class HBNBCommand(cmd.Cmd):
     """entry point of the command interpreter
-    """
-
     intro = "A command interpreter to manipulate AirBnB data"
+    """
     prompt = '(hbnb) '
 
     objects = {'BaseModel': BaseModel, 'User': User,
@@ -40,17 +40,13 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, args):
         """EOF command to exit the program
         """
+        print()
         return True
 
     def emptyline(self):
         """called when an empty line is entered in response to the prompt
         """
         pass
-
-    def postloop(self):
-        """method executed once when cmdloop() is about to return
-        """
-        print()
 
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it (to the JSON file)
@@ -166,8 +162,11 @@ class HBNBCommand(cmd.Cmd):
         recognized
         """
         token = args.split('.')
-        cmds = ['all()', 'count()']
+        #tokens = [item.split('(')[0] for item in token]
+        cmds = ['all()', 'count()', 'show']
         if token[0] in HBNBCommand.objects.keys():
+            pattern = 'show'
+            show = re.search(pattern, token[1])
             if len(token) != 2 or token[1] not in cmds:
                 return
             elif token[1] == cmds[0]:
@@ -186,6 +185,12 @@ class HBNBCommand(cmd.Cmd):
                     if obj == token[0]:
                         count = count + 1
                 print(count)
+            else:
+                print("dfghjk")
+                pattern = 'show'
+                show = re.search(pattern, token[1])
+                if show == cmds[2]:
+                    print("Hello Adam") 
         else:
             print("** class doesn't exist **")
 
