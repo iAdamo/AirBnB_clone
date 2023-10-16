@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return False
             all_objs = storage.all()
-            obj_id = f"{token[0]}.{token[1]}"
+            obj_id = '{}.{}'.format(token[0], token[1])
             if obj_id not in all_objs.keys():
                 print("** no instance found **")
             else:
@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return False
             all_objs = storage.all()
-            obj_id = f"{token[0]}.{token[1]}"
+            obj_id = '{}.{}'.format(token[0], token[1])
             if obj_id not in all_objs.keys():
                 print("** no instance found **")
             else:
@@ -139,7 +139,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return False
             all_objs = storage.all()
-            obj_id = f"{token[0]}.{token[1]}"
+            obj_id = '{}.{}'.format(token[0], token[1])
             if obj_id not in all_objs.keys():
                 print("** no instance found **")
             else:
@@ -151,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
                     return False
                 if token[3].startswith('"') and token[3].endswith('"'):
                     token[3] = token[3][1:-1]
-                key = f"{token[0]}.{token[1]}"
+                key = '{}.{}'.format(token[0], token[1])
                 setattr(all_objs[key], token[2], token[3])
                 storage.save()
         else:
