@@ -162,7 +162,6 @@ class HBNBCommand(cmd.Cmd):
         recognized
         """
         token = args.split('.')
-        #tokens = [item.split('(')[0] for item in token]
         cmds = ['all()', 'count()', 'show']
         if token[0] in HBNBCommand.objects.keys():
             pattern = 'show'
@@ -185,12 +184,6 @@ class HBNBCommand(cmd.Cmd):
                     if obj == token[0]:
                         count = count + 1
                 print(count)
-            else:
-                print("dfghjk")
-                pattern = 'show'
-                show = re.search(pattern, token[1])
-                if show == cmds[2]:
-                    print("Hello Adam") 
         else:
             print("** class doesn't exist **")
 
