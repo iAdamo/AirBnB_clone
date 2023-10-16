@@ -6,6 +6,10 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
+"""This file defines the State Model
+It inherits from the BaseModel
+"""
+
     name = ""
 
     def __init__(self, *args, **kwargs):
