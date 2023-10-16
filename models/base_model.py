@@ -40,9 +40,9 @@ class BaseModel:
             your object
             """
         if kwargs:
+            if "__class__" in kwargs.keys():
+                del kwargs["__class__"]
             for key, value in kwargs.items():
-                if key == "__class__":
-                    continue
                 if key == "created_at" or key == "updated_at":
                     value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
                 setattr(self, key, value)
