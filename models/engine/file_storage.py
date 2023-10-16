@@ -35,7 +35,6 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
-
     def all(self):
         """returns the dictionary __objects
         """
@@ -60,7 +59,7 @@ class FileStorage:
         """deserializes the JSON file to __objects
         """
         if exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, "r", encoding='utf-8') as file:                                                                    
+            with open(FileStorage.__file_path, "r", encoding='utf-8') as file:
                 objects = {'BaseModel': BaseModel, 'User': User,
                            'State': State, 'City': City,
                            'Amenity': Amenity, 'Place': Place,
