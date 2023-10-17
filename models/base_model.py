@@ -2,7 +2,6 @@
 """base_model module: contains a class `BaseModel` that defines all common
 attributes/methods for other classes
 
-
 You can also test file by file by using this command:
 python3 -m unittest tests/test_models/test_base_model.py
 """
@@ -69,7 +68,7 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values of
+        """returns a dictionary repesentation containing all keys/values of
         __dict__ of the instance
 
         Return:
