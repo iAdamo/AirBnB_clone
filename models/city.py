@@ -6,12 +6,7 @@ from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """This file defines the City Model
-    It inherits from the BaseModel
+    """City Model inherits from the BaseModel
     """
-
     state_id = ""
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)

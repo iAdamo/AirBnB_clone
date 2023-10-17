@@ -1,14 +1,11 @@
 #!/usr/bin/python3
-"""
-creates a sub class for Basemodel named, Place
+"""creates a sub class for Basemodel named, Place
 """
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """the place model"""
-
-    """the attributes to define the inherited class model, place"""
+    """Class Place, subclass to BaseModel"""
     city_id = ""
     user_id = ""
     name = ""
@@ -20,6 +17,3 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_ids = ""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)

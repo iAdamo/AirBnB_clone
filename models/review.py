@@ -1,18 +1,13 @@
 #!/usr/bin/python3
-"""
-creates a sub class for Basemodel named, Review
+"""creates a sub class for Basemodel named, Review
 """
 from models.base_model import BaseModel
 
 
 class Review(BaseModel):
     """This file defines the Review Model
-It inherits from the BaseModel
-"""
-
+    It inherits from the BaseModel
+    """
     place_id = ""
     user_id = ""
     text = ""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)

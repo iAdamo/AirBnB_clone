@@ -162,13 +162,12 @@ class HBNBCommand(cmd.Cmd):
         recognized
         """
         token = args.split('.')
-        cmds = ['all()', 'count()', 'show']
         if token[0] in HBNBCommand.objects.keys():
-            pattern = 'show'
-            show = re.search(pattern, token[1])
-            if len(token) != 2 or token[1] not in cmds:
+            if len(token) != 2:
                 return
-            elif token[1] == cmds[0]:
+            cmd_id = token[1].strip(')').split('(')
+            cmdd = cmd_id[0]
+            if token[1] == "all()":
                 str_rep = []
                 all_objs = storage.all()
                 for obj_id in all_objs.keys():
@@ -176,7 +175,7 @@ class HBNBCommand(cmd.Cmd):
                     if obj == token[0]:
                         str_rep.append(str(all_objs[obj_id]))
                 print(str_rep)
-            elif token[1] == cmds[1]:
+            elif token[1] == "count()":
                 count = 0
                 all_objs = storage.all()
                 for obj_id in all_objs.keys():
@@ -184,6 +183,20 @@ class HBNBCommand(cmd.Cmd):
                     if obj == token[0]:
                         count = count + 1
                 print(count)
+            elif cmdd == "show":
+                if len(cmd_id) < 2:
+                    print("** instance id missing **")
+                else:
+                    id = cmd_id[1][1:-1]
+                    obj_id = '{} {}'.format(token[0], id)
+                    self.do_show(obj_id)
+            elif cmdd == "destroy":
+                if len(cmd_id) < 2:
+                    print("** instance id missing **")
+                else:
+                    id = cmd_id[1][1:-1]
+                    obj_id = '{} {}'.format(token[0], id)
+                    self.do_destroy(obj_id)
         else:
             print("** class doesn't exist **")
 

@@ -7,13 +7,6 @@ from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
+    """Amenity module is inheriting gtom the main class.
     """
-    A subclass to inherit from Basemodel.
-
-    Amenity module is inheriting gtom the main class.
-    """
-
     name = ""
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
