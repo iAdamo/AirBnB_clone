@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-creates a sub class for Basemodel named, City
+this module creates a sub class for Basemodel named, City
 """
 from models.base_model import BaseModel
 
