@@ -6,6 +6,6 @@ from models.base_model import BaseModel
 
 class State(BaseModel):
     """This file defines the State Model
-    It inherits from the BaseModel
+    It inherits from the main class BaseModel
     """
     name = ""
