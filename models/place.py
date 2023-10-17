@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""creates a sub class for Basemodel named, Place
+"""creates a sub class from Basemodel named, Place
 """
 from models.base_model import BaseModel
 
