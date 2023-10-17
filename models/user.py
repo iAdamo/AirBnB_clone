@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Module (user): This file defines the UserModel class
+Module (user): This file defines the UserModel sub class
 it inherits from BaseModel
 
 """
