@@ -9,7 +9,7 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """User models
+    """User models sub class inheriting from the main class BaseModel
 
     Args:
         email: string - empty string
