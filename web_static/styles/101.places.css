@@ -1,0 +1,150 @@
+.places .amenities {
+  margin-top: 40px;
+  text-align: left;
+  list-style-type: none;
+  position: relative;
+  left: -15px;
+  width: 100%;
+}
+
+.places .reviews {
+  margin-top: 40px;
+  text-align: left;
+  list-style-type: none;
+  width: 100%;
+  position: relative;
+  top: -900px;
+  left: -15px;
+}
+
+.places .amenities h2 {
+  font-size: 16px;
+  border-bottom: #DDDDDD solid 1px;
+  text-align: left;
+  padding-bottom: 0;
+  width: 100%;
+}
+
+.places .reviews h2 {
+  font-size: 16px;
+  border-bottom: #DDDDDD solid 1px;
+  text-align: left;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.places .amenities ul {
+  list-style-type: none;
+  padding-top: 20px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.places .amenities li {
+  display: flex;
+  text-align: justify;
+}
+
+.places .reviews ul {
+  list-style-type: none;
+  padding-top: 20px;
+  line-height: 29px;
+}
+
+.icon-tv {
+  background-image: url(../images/icon_tv.png);
+  width: 50px;
+  height: 50px;
+}
+
+.icon-fri {
+  background-image: url(../images/icon_pets.png);
+  width: 50px;
+  height: 50px;
+}
+
+.icon-wifi {
+  background-image: url(../images/icon_wifi.png);
+  width: 50px;
+  height: 50px;
+}
+
+.places .amenities li p {
+  padding: 20px;
+  text-align: left;
+
+  
+}
+
+.places .reviews h3 {
+  font-size: 14px;
+  text-align: left;
+  margin: 10px auto;
+}
+
+.places .reviews p{
+  font-size: 12px;
+ 
+}
+
+.places .reviews li{
+  line-height: 31px;
+}
+
+@media only screen and (max-width: 600px){
+  body {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .filters{
+    width: 100%;
+    overflow: auto;
+  }
+
+  
+    button {
+      font-size: 18px;
+      background-color: #FF5A5F;
+      color: #FFFFFF;
+      height: 48px;
+      width: 20%;
+      border: none;
+      border-radius: 4px;
+      position: absolute;
+      top: 12px;
+      right: 30px;
+      text-align: justify;
+  }
+
+  .places{
+    max-width: 1000px;
+  margin: 0px auto;
+  font-size: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+  }
+
+
+@media screen and (min-width: 601px) and (max-width: 1024px){
+  body {
+    width: 100%;
+    box-sizing: content-box;
+  }
+}
+
+@media screen and (min-width: 1025px){
+  .places{
+    max-width: 1000px;
+  margin: 0px auto;
+  font-size: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+  
+}

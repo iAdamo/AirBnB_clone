@@ -1,3 +1,4 @@
+
 .filters {
     background-color: white;
     position: absolute;
@@ -27,8 +28,10 @@ button:hover {
     width: 25%;
     border-right: solid #DDDDDD 1px;
     display: inline-block;
+    
+
 }
-.amenities {
+.container .amenities {
     position: absolute;
     right: 50%;
     height: 100%;
